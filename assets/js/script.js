@@ -1,6 +1,6 @@
 // Starting and Ending Locations should be Airport Codes
-var startingLocation = "DFW";
-var endingLocation = "LHR";
+var startingLocation = "LHR";
+var endingLocation = "DFW";
 // Dates should be in the format below from the calendar input
 var outboundDate = "2020-07-06";
 var inboundDate = "2020-07-15";
@@ -64,8 +64,15 @@ function addCountryData (data) {
     var restrictionLevel = $("<p>").text("Restriction Level: " + data.Trips[0].Advice.News.Recommendation);
     var restrictionNotes = $("<p>").text("Notes: " + data.Trips[0].Advice.Notes[0].Note);
     var lastUpdated = $("<p>").text("Last Updated: " + new Date(data.Trips[0].LatestStats.date).toLocaleDateString('en-US'));
+
+    // var addTripDiv = $("<div>").addClass("card blue darken-4 white-text card-action");
+    var savedTripBtn = $("<a>").addClass("btn-floating blue lighten-1").text("Add to Saved Trips");
+    var savedTripIcon = $("<i>").addClass("material-icons").text("add");
     
     $("#covid-data").html(newDiv.append(cityTitle).append(newCases, totalCases, newDeaths, totalDeaths, restrictionLevel, restrictionNotes, lastUpdated));
+
+    $("#saved-trips-btn").append(savedTripIcon).append(savedTripBtn);
+
 }
 
 var getTravelQuotes = function () {
